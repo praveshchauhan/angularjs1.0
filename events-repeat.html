@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Events & Repeat - AngularJS</title>
+		<style>
+			table {border-collapse: collapse}
+			th {text-align: left}
+			td,th {border:1px solid #000;}
+		</style>
+		<script src="Scripts/angular-1.6.4.min.js"></script>
+	</head>
+	<body data-ng-app="myApp">			
+		<h2>Events & Repeat</h2>
+		<table data-ng-controller="myCtrl">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Likes</th>
+					<th>Dislikes</th>
+					<th>Likes / Dislikes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="t in technologies">
+					<td>{{ t.name }}</td>
+					<td>{{ t.likes }}</td>
+					<td>{{ t.dislikes }}</td>
+					<td>
+						<input type="button" value="Like" ng-click="increaseLikes(t)"/>
+						<input type="button" value="Dislikes" ng-click="increaseDislikes(t)"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myCtrl', function($scope, $rootScope) {
+				var technologies = [
+					{name: 'HTML', likes: 0, dislikes: 0},
+					{name: 'CSS', likes: 0, dislikes: 0},
+					{name: 'JavaScript', likes: 0, dislikes: 0},
+					{name: 'AngularJS', likes: 0, dislikes: 0}
+				]
+				
+				$scope.technologies = technologies;
+				
+				$scope.increaseLikes = function(t) {
+					t.likes ++;
+				}
+				
+				$scope.increaseDislikes = function(t) {
+					t.dislikes ++;
+				}
+			});
+		</script>
+	</body>
+</html>

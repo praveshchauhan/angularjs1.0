@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AngularJS Basic</title>
+		<script src="Scripts/angular-1.6.4.min.js"></script>
+	</head>
+	<body data-ng-app="">
+		<h1>Angular Basics</h1>
+		<h2>Basic ng tags</h2>
+		<div data-ng-init="myname = {'firstname': 'Pravesh', 'lastname' : 'Chauhan'}">
+			First Name : <input type="text" data-ng-model="myname.firstname"/>
+			<br/><br/>
+			First Name : <input type="text" data-ng-model="myname.lastname"/>
+			<br/><br/>
+			My name is {{ myname.firstname + ' ' + myname.lastname}}
+			<br/><br/>
+			My name is <span data-ng-bind="myname.firstname"></span> <span data-ng-bind="myname.lastname"></span>
+		</div>
+	</body>
+</html>

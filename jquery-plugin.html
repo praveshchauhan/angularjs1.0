@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jQquery Create Plugin</title>
+		<script src="Scripts/jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+		<div id="div1">Text1</div>
+		<div id="div2">Text2</div>
+		<div id="div3">Text3</div>
+		<script>
+			(function($){
+				$.fn.setColor = function(options) {
+					var settings = {
+						color: ''
+					}
+					
+					if(typeof options === 'object') {
+						if($.isPlainObject(options)) {
+							$.extend(settings, options);
+						}
+					}
+					
+					function setColor(o) {
+						if(settings.color != ''){
+							o.css('color', settings.color);
+						}
+					}
+					
+					return this.each(function(){
+						var o = $(this);
+						setColor(o);
+					});
+				}				
+			})(jQuery);
+			
+			$(document).ready(function(){
+				$("#div1").setColor({color:'red'});
+				$("#div2").setColor({color:'blue'});
+				$("#div3").setColor();
+			})
+		</script>
+	</body>
+</html>

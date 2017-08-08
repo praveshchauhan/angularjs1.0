@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AngularJS Controller</title>
+		<script src="Scripts/angular-1.6.4.min.js"></script>
+	</head>
+	<body data-ng-app="myApp">			
+		<h2>Controller1</h2>
+		<div data-ng-controller="myCtrl">
+			First Name: <input type="text" data-ng-model="firstName"><br>
+			Last Name: <input type="text" data-ng-model="lastName"><br>
+			<br>
+			Full Name: {{firstName + " " + lastName}}
+		</div>
+		
+		<h2>Controller</h2>
+		<div data-ng-controller="myCtrl2">
+			My name is {{ myname.firstName + ' ' + myname.lastName }}
+		</div>
+		
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myCtrl', function($scope, $rootScope) {
+				$scope.firstName= "John";
+				$scope.lastName= "Doe";
+			});
+			
+			app.controller('myCtrl2', function($scope, $rootScope) {
+				var mynameGlobal = {'firstName': 'Pravesh', 'lastName' : 'Chauhan'};
+				var mynameLocal = {'firstName': 'P', 'lastName' : 'Kumar'};
+				$rootScope.myname = mynameGlobal;
+				//$scope.myname = mynameLocal;
+			});
+		</script>
+	</body>
+</html>

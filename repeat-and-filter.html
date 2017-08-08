@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Repeat & Filter - AngularJS</title>
+		<script src="Scripts/angular-1.6.4.min.js"></script>
+	</head>
+	<body data-ng-app="myApp">			
+		<h2>Repeat & Filter</h2>
+		<table data-ng-controller="myCtrl">
+			<tr>
+				<th>{{ 'First Name'| uppercase }}</th>
+				<th>{{ 'Last Name' | uppercase }}</th>
+				<th>AGE</th>
+			</tr>
+			<tr data-ng-repeat="x in name | orderBy: 'firstName'">
+				<td ng-if="$even" style="background-color:#f1f1f1">{{x.firstName | uppercase }}</td>
+				<td ng-if="$odd">{{x.firstName | uppercase }}</td>
+				<td ng-if="$even" style="background-color:#f1f1f1">{{x.lastName | uppercase }}</td>
+				<td ng-if="$odd">{{x.lastName | uppercase }}</td>
+				<td ng-if="$even" style="background-color:#f1f1f1">{{x.age}}</td>
+				<td ng-if="$odd">{{x.age}}</td>
+			</tr>
+		</table>
+		<h2>Nested Repeat</h2>
+		<ul data-ng-controller="nestedRepeat">
+			<li data-ng-repeat="c in countries">
+				{{ c.name }}
+				<ul>
+					<li data-ng-repeat="ct in c.cities">
+						{{ ct.name }}
+					</li>
+				</ul>
+			</li>
+		</ul>		
+		<script>
+			var app = angular.module('myApp',[]);
+			
+			app.controller('myCtrl', function($scope, $rootScope) {
+				var name = [
+					{'firstName': 'Pravesh', 'lastName': 'Chauhan', 'age' : 30},
+					{'firstName': 'Amit', 'lastName': 'Singh', 'age' : 32},
+					{'firstName': 'Sunil', 'lastName': 'Sharma', 'age' : 29}
+				]
+				$scope.name = name;
+			});
+			
+			app.controller('nestedRepeat', function($scope, $rootScope) {
+				var countries = [
+					{'name': 'India', 'cities': [{name:'Delhi'}, {name:'Mumbai'}, {name:'Kolkata'}, {name:'Chennai'}]},
+					{'name': 'Nepal', 'cities': [{name:'Kathmandu'}, {name:'Pokhra'}]}
+				]
+				$scope.countries = countries;
+			});
+		</script>
+	</body>
+</html>

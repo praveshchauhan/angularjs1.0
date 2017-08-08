@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nested Repeat - AngularJS</title>
+		<script src="Scripts/angular-1.6.4.min.js"></script>
+	</head>
+	<body data-ng-app="myApp">			
+		<h2>Nested Repeat</h2>
+		<ul data-ng-controller="nestedRepeat">
+			<li data-ng-repeat="c in countries">
+				{{c.name}}
+				<ul>
+					<li data-ng-repeat="ct in c.cities | orderBy: 'name'">
+						{{ ct.name }}
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<script>
+			var app = angular.module('myApp',[]);
+			app.controller('nestedRepeat', function($scope, $rootScope) {
+				var countries = [
+					{'name': 'India', 'cities': [{name:'Delhi'}, {name:'Mumbai'}, {name:'Kolkata'}, {name:'Chennai'}]},
+					{'name': 'Nepal', 'cities': [{name:'Kathmandu'}, {name:'Pokhra'}]}
+				]
+				$scope.countries = countries;
+			});
+		</script>
+	</body>
+</html>
